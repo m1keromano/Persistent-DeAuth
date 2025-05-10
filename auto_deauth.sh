@@ -43,8 +43,11 @@ enable_monitor_mode() {
   fi
 
   echo "Attempting to stop Network Manager..."
-  sudo systemctl stop NetworkManager.service &> /dev/null
+  sudo systemctl stop NetworkManager &> /dev/null
   sleep 2
+
+  echo "Attempting to stop WPA Supplicant"
+  sudo systemctl stop wpa_supplicant &> /dev/null
 
   echo "Running airmon-ng check kill..."
   sudo airmon-ng check kill
